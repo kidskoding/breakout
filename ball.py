@@ -6,7 +6,7 @@ class Ball:
         self.y = y
         self.color = (175, 175, 175)
         self.radius = 10
-        self.velocity = 0.1
+        self.velocity = 5
         
     def draw(self, screen):
         pygame.draw.circle(

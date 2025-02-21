@@ -8,6 +8,7 @@ pygame.init()
 width, height = 640, 480
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Breakout")
+clock = pygame.time.Clock()
 
 paddle = Paddle((width - paddle_width) // 2, height - 50)
 ball = Ball(width // 2, height // 2)
@@ -35,5 +36,6 @@ while running:
     ball.check_collision_with_paddle(paddle)
     
     pygame.display.flip()
+    clock.tick(60)
     
 pygame.quit()

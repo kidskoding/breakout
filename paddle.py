@@ -10,7 +10,7 @@ class Paddle:
         self.y = y
         self.width = paddle_width
         self.height = paddle_height
-        self.velocity = 0.3
+        self.velocity = 5
         
     def draw(self, screen):
         pygame.draw.rect(
