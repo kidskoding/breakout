@@ -25,6 +25,15 @@ while running:
     ball.draw(screen)
     brick_grid.draw_grid(screen)
     
+    keys = pygame.key.get_pressed()
+    if paddle.x > 0 and (keys[pygame.K_LEFT] or keys[pygame.K_a]):
+        paddle.x -= paddle.velocity
+    if paddle.x < 640 - paddle.width and (keys[pygame.K_RIGHT] or keys[pygame.K_d]):
+        paddle.x += paddle.velocity
+    
+    ball.update()
+    ball.check_collision_with_paddle(paddle)
+    
     pygame.display.flip()
     
 pygame.quit()

@@ -8,6 +8,9 @@ class Paddle:
         self.color = (175, 175, 175)
         self.x = x
         self.y = y
+        self.width = paddle_width
+        self.height = paddle_height
+        self.velocity = 0.3
         
     def draw(self, screen):
         pygame.draw.rect(

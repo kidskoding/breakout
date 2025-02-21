@@ -6,6 +6,7 @@ class Ball:
         self.y = y
         self.color = (175, 175, 175)
         self.radius = 10
+        self.velocity = 0.1
         
     def draw(self, screen):
         pygame.draw.circle(
@@ -14,3 +15,11 @@ class Ball:
             (self.x, self.y),
             self.radius
         )
+        
+    def update(self):
+        self.y += self.velocity
+        
+    def check_collision_with_paddle(self, paddle):
+        if (self.y + self.radius >= paddle.y and
+            paddle.x <= self.x <= paddle.x + paddle.width):
+            self.velocity = -self.velocity
