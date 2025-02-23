@@ -22,8 +22,6 @@ class Ball:
     def update(self):
         self.x += self.velocity_x
         self.y += self.velocity_y
-        if self.y + self.radius >= 480:
-            self.reset_ball()
         
     def check_collision_with_paddle(self, paddle):
         if (self.y + self.radius >= paddle.y and
@@ -55,6 +53,6 @@ class Ball:
      
     def reset_ball(self):
         self.x = 640 // 2
-        self.y = 480 // 2
+        self.y = 480 // 2 - 30
         self.velocity_x = 0
         self.velocity_y = 4
