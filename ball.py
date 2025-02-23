@@ -1,3 +1,5 @@
+import math
+import random
 import pygame
 
 class Ball:
@@ -6,7 +8,8 @@ class Ball:
         self.y = y
         self.color = (175, 175, 175)
         self.radius = 10
-        self.velocity = 5
+        self.velocity_x = 0
+        self.velocity_y = 4
         
     def draw(self, screen):
         pygame.draw.circle(
@@ -17,9 +20,34 @@ class Ball:
         )
         
     def update(self):
-        self.y += self.velocity
+        self.x += self.velocity_x
+        self.y += self.velocity_y
+        if self.y + self.radius >= 480:
+            self.reset_ball()
         
     def check_collision_with_paddle(self, paddle):
         if (self.y + self.radius >= paddle.y and
-            paddle.x <= self.x <= paddle.x + paddle.width):
-            self.velocity = -self.velocity
+                self.y - self.radius <= paddle.y + paddle.height and
+                paddle.x <= self.x <= paddle.x + paddle.width):
+
+            relative_hit = (self.x - paddle.x) / paddle.width
+            self.velocity_y = -abs(self.velocity_y)
+
+            max_angle = 60
+            angle = (relative_hit - 0.5) * max_angle
+
+            angle_radians = math.radians(angle)
+            speed = 7
+            self.velocity_x = speed * math.sin(angle_radians)
+            self.velocity_y = -speed * math.cos(angle_radians)
+    def check_collision_with_walls(self, width):
+        if self.x - self.radius <= 0 or self.x + self.radius >= width:
+            self.velocity_x = -self.velocity_x
+        if self.y - self.radius <= 0:
+            self.velocity_y = -self.velocity_y
+     
+    def reset_ball(self):
+        self.x = 640 // 2
+        self.y = 480 // 2
+        self.velocity_x = 0
+        self.velocity_y = 4
