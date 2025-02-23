@@ -35,6 +35,7 @@ while running:
     ball.update()
     ball.check_collision_with_paddle(paddle)
     ball.check_collision_with_walls(screen_width)
+    ball.check_collision_with_bricks(brick_grid.bricks)
     if ball.y + ball.radius >= screen_width:
         ball.reset_ball()
         pygame.time.delay(1000)

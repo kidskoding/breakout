@@ -8,10 +8,12 @@ class Brick:
         self.color = color
         self.x = x
         self.y = y
+        self.width = brick_width
+        self.height = brick_height
         
     def draw(self, screen):
         pygame.draw.rect(
             screen, 
             self.color, 
-            (self.x, self.y, brick_width, brick_height)
+            (self.x, self.y, self.width, self.height)
         )

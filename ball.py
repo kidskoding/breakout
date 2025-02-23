@@ -45,6 +45,13 @@ class Ball:
             self.velocity_x = -self.velocity_x
         if self.y - self.radius <= 0:
             self.velocity_y = -self.velocity_y
+    def check_collision_with_bricks(self, bricks):
+        for brick in bricks:
+            if (brick.x <= self.x <= brick.x + brick.width and
+                    brick.y <= self.y <= brick.y + brick.height):
+                bricks.remove(brick)
+                self.velocity_y = -self.velocity_y
+                break
      
     def reset_ball(self):
         self.x = 640 // 2
